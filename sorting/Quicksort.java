@@ -27,7 +27,9 @@ public class Quicksort<E> extends SortingAlgorithm<E, Comparator<? super E>> {
             return;
 
         int pivotIndex = partition(list, from, to);
-        throw new UnsupportedOperationException(); // TODO: implement
+        //throw new UnsupportedOperationException(); // TODO: implement
+        sort(list, from, pivotIndex-1);
+        sort(list, pivotIndex+1, to);
     }
 
     // Partition the given range of a list.
@@ -38,7 +40,14 @@ public class Quicksort<E> extends SortingAlgorithm<E, Comparator<? super E>> {
         E pivot = list.get(pivotIndex);
 
         // Hint: You can use Util.swap(list, i, j) to swap indices i and j.
-        throw new UnsupportedOperationException(); // TODO: implement
+        for (int i = from; i < to; i++){
+            if (i <= pivotIndex){
+                swap(list, i, from);
+                from++;
+            }
+        }
+        swap(list, from, to);
+        return from;
     }
 
     // Run your own tests here!
