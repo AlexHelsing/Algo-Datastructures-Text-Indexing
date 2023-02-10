@@ -40,7 +40,10 @@ public class SuffixArray {
             sortedSuffixStarts = new IOIntArray(text.size());
 
             // Write all the possible suffix starts into `sortedSuffixStarts` (not yet sorted).
-            throw new UnsupportedOperationException(); // TODO: implement
+            for (int i = 0; i < text.size(); i++){
+                sortedSuffixStarts.set(i, i);
+            }
+
         });
 
         final LexicographicComparator<Integer> suffixComparator = text.suffixComparator(IS_CASE_INSENSITIVE);
@@ -48,7 +51,19 @@ public class SuffixArray {
         double time = Util.printTiming("Sorting suffix array", () -> {
 
             // Construct and call one of your sorting algorithms.
-            throw new UnsupportedOperationException(); // TODO: implement
+            for (int i = 0; i < sortedSuffixStarts.size(); i++) {
+                int key = sortedSuffixStarts.get(i);
+                int j = i - 1;
+
+                while (j >= 0 && counting.compare(sortedSuffixStarts.get(j), key) > 0) {
+                    sortedSuffixStarts.set(j + 1, sortedSuffixStarts.get(j));
+                    j--;
+                }
+
+                sortedSuffixStarts.set(j + 1, key);
+            }
+
+
 
         });
         System.out.println("  * Comparison count: " + counting.numComparisons());
@@ -119,8 +134,8 @@ public class SuffixArray {
 
     // Experiment with the SuffixArray class here.
     public static void main(String[] args) throws IOException {
-        SuffixArray suffixArray = new SuffixArray("texts/bnc-small.txt");
-        // suffixArray.build();
+         SuffixArray suffixArray = new SuffixArray("texts/bnc-small.txt");
+         suffixArray.build();
         // suffixArray.writeToDisk();
         // suffixArray.readFromDisk();
         // suffixArray.searchForKey("ghost", 10, 40, true);
