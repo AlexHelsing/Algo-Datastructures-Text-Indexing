@@ -4,7 +4,7 @@ import java.util.AbstractList;
 import java.util.Comparator;
 import java.util.List;
 
-import sorting.LexicographicComparator;
+import sorting.*;
 import util.IOIntArray;
 import util.Util;
 import util.Util.CountingLexicographicComparator;
@@ -50,19 +50,9 @@ public class SuffixArray {
         CountingLexicographicComparator<Integer> counting = new CountingLexicographicComparator<>(suffixComparator);
         double time = Util.printTiming("Sorting suffix array", () -> {
 
-            // Construct and call one of your sorting algorithms.
-            for (int i = 0; i < sortedSuffixStarts.size(); i++) {
-                int key = sortedSuffixStarts.get(i);
-                int j = i - 1;
-
-                while (j >= 0 && counting.compare(sortedSuffixStarts.get(j), key) > 0) {
-                    sortedSuffixStarts.set(j + 1, sortedSuffixStarts.get(j));
-                    j--;
-                }
-
-                sortedSuffixStarts.set(j + 1, key);
-            }
-
+            // Construct and call one of your sorting algorithms
+            Quicksort quicksort = new Quicksort<>(counting, QuicksortPivotSelector.ADAPTIVE);
+            quicksort.sort(sortedSuffixStarts);
 
 
         });

@@ -23,6 +23,7 @@ public class Quicksort<E> extends SortingAlgorithm<E, Comparator<? super E>> {
     public void sort(List<E> list, int from, int to) {
         // Base case
         int size = to - from;
+
         if (size == 0)
             return;
 
