@@ -26,12 +26,10 @@ public class Quicksort<E> extends SortingAlgorithm<E, Comparator<? super E>> {
 
         if (size == 0)
             return;
-
         int pivotIndex = partition(list, from, to);
         sort(list, from, pivotIndex);
         sort(list, pivotIndex + 1, to);
     }
-
     // Partition the given range of a list.
     // Return the final position of the pivot.
     private int partition(List<E> list, int from, int to) {

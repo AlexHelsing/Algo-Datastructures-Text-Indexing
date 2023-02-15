@@ -120,7 +120,10 @@ public class SuffixArray {
             // * If there are more matches than maxNumMatches, end with a line as follows:
             // [17 matches omitted]
             BinarySearch binarySearch = new BinarySearch();
-            text.printKeywordInContext(0, maxNumMatches, context, trimLines);
+            int start = binarySearch.findIntervalStart(sortedSuffixes, searchKey, c);
+            int end = binarySearch.findIntervalEnd(sortedSuffixes, searchKey, c);
+            text.printKeywordInContext(start, end, context, trimLines);
+            //System.out.println("Number of matches: " + maxNumMatches);
         });
     }
 
@@ -128,8 +131,8 @@ public class SuffixArray {
     public static void main(String[] args) throws IOException {
          SuffixArray suffixArray = new SuffixArray("texts/bnc-small.txt");
          suffixArray.build();
-        // suffixArray.writeToDisk();
-        // suffixArray.readFromDisk();
-         suffixArray.searchForKey("ghost", 10, 40, true);
+         suffixArray.writeToDisk();
+         suffixArray.readFromDisk();
+         suffixArray.searchForKey("face", 10, 5, true);
     }
 }
