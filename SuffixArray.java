@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import sorting.*;
+import util.BinarySearch;
 import util.IOIntArray;
 import util.Util;
 import util.Util.CountingLexicographicComparator;
@@ -118,7 +119,8 @@ public class SuffixArray {
             // * Call text.printKeywordInContext to report a match. That is where the remaining arguments are used.
             // * If there are more matches than maxNumMatches, end with a line as follows:
             // [17 matches omitted]
-            throw new UnsupportedOperationException(); // TODO: implement
+            BinarySearch binarySearch = new BinarySearch();
+            text.printKeywordInContext(0, maxNumMatches, context, trimLines);
         });
     }
 
@@ -128,6 +130,6 @@ public class SuffixArray {
          suffixArray.build();
         // suffixArray.writeToDisk();
         // suffixArray.readFromDisk();
-        // suffixArray.searchForKey("ghost", 10, 40, true);
+         suffixArray.searchForKey("ghost", 10, 40, true);
     }
 }
