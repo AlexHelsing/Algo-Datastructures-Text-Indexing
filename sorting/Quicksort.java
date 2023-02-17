@@ -23,10 +23,14 @@ public class Quicksort<E> extends SortingAlgorithm<E, Comparator<? super E>> {
     public void sort(List<E> list, int from, int to) {
         // Base case
         int size = to - from;
-
         if (size == 0)
             return;
+
         int pivotIndex = partition(list, from, to);
+
+        if(from >= to){
+            return;
+        }
         sort(list, from, pivotIndex);
         sort(list, pivotIndex + 1, to);
     }
@@ -38,28 +42,19 @@ public class Quicksort<E> extends SortingAlgorithm<E, Comparator<? super E>> {
         E pivot = list.get(pivotIndex);
 
         // Hint: You can use Util.swap(list, i, j) to swap indices i and j.
-        swap(list, pivotIndex, to - 1);
-
-        int i = from;
-        int j = to - 2;
-        while (i <= j) {
-            while (comparator.compare(list.get(i), pivot) < 0) {
-                i++;
-            }
-            while (comparator.compare(pivot, list.get(j)) < 0) {
-                j--;
-            }
-            if (i <= j) {
+        if (pivotIndex != from) {
+            swap(list, pivotIndex, from);
+        }
+        int i = from +1;
+        for (int j = from +1; j < to; j++){
+            int comp = comparator.compare(list.get(j), pivot);
+            if (comp < 0) {
                 swap(list, i, j);
                 i++;
-                j--;
             }
         }
-
-        // Swap pivot to its final position
-        swap(list, i, to - 1);
-
-        return i;
+        swap(list, from, i-1);
+        return i-1;
     }
 
     // Run your own tests here!

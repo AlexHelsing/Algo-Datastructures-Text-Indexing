@@ -119,17 +119,30 @@ public class SuffixArray {
             // * Call text.printKeywordInContext to report a match. That is where the remaining arguments are used.
             // * If there are more matches than maxNumMatches, end with a line as follows:
             // [17 matches omitted]
-            BinarySearch binarySearch = new BinarySearch();
-            int start = binarySearch.findIntervalStart(sortedSuffixes, searchKey, c);
-            int end = binarySearch.findIntervalEnd(sortedSuffixes, searchKey, c);
-            text.printKeywordInContext(start, end, context, trimLines);
-            //System.out.println("Number of matches: " + maxNumMatches);
+            int startInterval = BinarySearch.findIntervalStart(sortedSuffixes, searchKey, c);
+            int endInterval = BinarySearch.findIntervalEnd(sortedSuffixes, searchKey, c);
+            if (endInterval == startInterval) {
+                System.out.println("[No matches found]");
+                return;
+            }
+            int numMatches = 0;
+            for (int i = startInterval; i < endInterval; i++){
+                int start = sortedSuffixStarts.get(i);
+                int end = start + searchKey.length();
+                if (numMatches <= maxNumMatches) {
+                    text.printKeywordInContext(start, end, context, trimLines);
+                }
+                numMatches++;
+            }
+            if (numMatches > maxNumMatches) {
+                System.out.println("[%d matches omited]%n");
+            }
         });
     }
 
     // Experiment with the SuffixArray class here.
     public static void main(String[] args) throws IOException {
-         SuffixArray suffixArray = new SuffixArray("texts/bnc-small.txt");
+         SuffixArray suffixArray = new SuffixArray("texts/bnc-medium.txt");
          suffixArray.build();
          suffixArray.writeToDisk();
          suffixArray.readFromDisk();
