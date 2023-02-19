@@ -27,7 +27,7 @@ public class MultiKeyQuicksort<E> extends SortingAlgorithm<E, LexicographicCompa
     // For example, when comparing two strings, this would mean that we only compare the characters at index 3.
     // This is much quicker than comparing the entire strings.
     // It also makes the "equal" partition larger (it may contain strings that differ from the pivot at some later position).
-    
+
     // In the recursion, we make sure to continue sorting with the same position in the smaller and larger parts of the partition.
     // However, for the "equal" part of the partition, we continue with position increased by one.
     // That way, we eventually compare all the characters of two strings until we discover a difference.
@@ -44,8 +44,41 @@ public class MultiKeyQuicksort<E> extends SortingAlgorithm<E, LexicographicCompa
         int size = to - from;
         if (size <= 1)
             return;
-        
-        throw new UnsupportedOperationException(); // TODO: implement
+
+        int pivotIndex = selector.pivotIndex(list, from, to, comparator);
+        E pivot = list.get(pivotIndex);
+
+        swap(list, from, pivotIndex);
+
+        pivotIndex = from;
+
+        int middleFrom = from +1;
+        int middleTo = to;
+        int i = middleFrom;
+
+        while (i < middleTo) {
+            E e = list.get(i);
+            int c = comparator.compare(e, pivot, position);
+
+            if (c < 0) {
+                swap(list, i, middleFrom);
+                middleFrom++;
+                i++;
+            } else if (c > 0) {
+                swap(list, i, middleTo-1);
+                middleTo--;
+            } else {
+                i++;
+            }
+        }
+        middleFrom--;
+        swap(list, middleFrom, pivotIndex);
+
+        sort(list, from, middleFrom, position);
+        sort(list, middleTo, to, position);
+
+        position++;
+        sort(list, middleFrom, middleTo, position);
     }
 
     // Run your own tests here!
@@ -61,9 +94,9 @@ public class MultiKeyQuicksort<E> extends SortingAlgorithm<E, LexicographicCompa
         System.out.println(list);
 
         list = Arrays.asList(
-            "turtle", "cat", "zebra", "donkey", "horsefly", "swan",
-            "turkey", "dog", "horse", "fly", "caterpillar", "elephant",
-            "swallow", "duck", "monkey", "carp", "tuna", "zebrafish");
+                "turtle", "cat", "zebra", "donkey", "horsefly", "swan",
+                "turkey", "dog", "horse", "fly", "caterpillar", "elephant",
+                "swallow", "duck", "monkey", "carp", "tuna", "zebrafish");
         algorithm.sort(list);
         System.out.println(list);
     }
