@@ -28,7 +28,7 @@ public class Quicksort<E> extends SortingAlgorithm<E, Comparator<? super E>> {
 
         int pivotIndex = partition(list, from, to);
 
-        if(from >= to){
+        if(from > to){
             return;
         }
         sort(list, from, pivotIndex);
@@ -42,20 +42,20 @@ public class Quicksort<E> extends SortingAlgorithm<E, Comparator<? super E>> {
         E pivot = list.get(pivotIndex);
 
         // Hint: You can use Util.swap(list, i, j) to swap indices i and j.
+        int i = from + 1;
         if (pivotIndex != from) {
             swap(list, pivotIndex, from);
         }
-        int i = from +1;
         for (int j = from +1; j < to; j++){
-            int comp = comparator.compare(list.get(j), pivot);
-            if (comp < 0) {
+            int c = comparator.compare(list.get(j), pivot);
+            if (c < 0) {
                 swap(list, i, j);
                 i++;
             }
         }
         swap(list, from, i-1);
         return i-1;
-    }
+        }
 
     // Run your own tests here!
     public static void main(String[] args) {

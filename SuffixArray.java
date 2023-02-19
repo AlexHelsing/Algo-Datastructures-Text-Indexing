@@ -125,16 +125,16 @@ public class SuffixArray {
                 System.out.println("[No matches found]");
                 return;
             }
-            int numMatches = 0;
+            int match = 0;
             for (int i = startInterval; i < endInterval; i++){
                 int start = sortedSuffixStarts.get(i);
                 int end = start + searchKey.length();
-                if (numMatches <= maxNumMatches) {
+                if (match <= maxNumMatches) {
                     text.printKeywordInContext(start, end, context, trimLines);
                 }
-                numMatches++;
+                match++;
             }
-            if (numMatches > maxNumMatches) {
+            if (match > maxNumMatches) {
                 System.out.println("[%d matches omited]%n");
             }
         });
@@ -142,7 +142,7 @@ public class SuffixArray {
 
     // Experiment with the SuffixArray class here.
     public static void main(String[] args) throws IOException {
-         SuffixArray suffixArray = new SuffixArray("texts/bnc-medium.txt");
+         SuffixArray suffixArray = new SuffixArray("texts/bnc-small.txt");
          suffixArray.build();
          suffixArray.writeToDisk();
          suffixArray.readFromDisk();
