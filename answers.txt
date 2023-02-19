@@ -29,13 +29,19 @@ Use this to decide which of the two growth rate scenarios fits the runtime bette
 
 | Case | T(1000) | T(10,000) | T(100,000) | (1) or (2)? |
 |------|---------|-----------|------------|-------------|
-| (a)  |         |           |            |             |
-| (b)  |         |           |            |             |
-| (c)  |         |           |            |             |
-| (d)  |         |           |            |             |
-| (e)  |         |           |            |             |
+| (a)  |19,1ms   |   280ms   |    22,4s   |       2     |
+| (b)  | 917us   |  3,22ms   |    10,5ms  |      1      |
+| (c)  |  3,52ms |   11,2ms  |    50,7ms  |      1      |
+| (d)  | 16,7ms  |    180ms  |    Crash   |       2     |
+| (e)  |  4,55ms |   11,8ms  |     54ms   |       1     |
 
 Are there disagreements between this experimental data and your theoretical knowledge?
+
+*I could not pass the -Xss10m to the VM as an argument, it did not help the crash :S
+
+We knew insertion sorts works really well for already sorted inputs, or inputs where a large part of the array is already
+sorted. Quicksort with first index pivot and sorted input is pretty crap since it chooses the smallest number of the whole
+array as a pivot, it's the absolute worst case for quicksort and ends up at quadratic performance n^2.
 
 TODO
 
@@ -48,15 +54,15 @@ Abort an algorithm (and skip the rest of its column) once it runs for longer tha
 
 | Text file               | Characters | insertion sort | quicksort | multi-key quicksort |
 |-------------------------|------------| ---------------|-----------|---------------------|
-| texts/bnc-miniscule.txt |      5,000 |                |           |                     |
-| texts/bnc-tiny.txt      |    100,000 |                |           |                     |
-| texts/bnc-mini.txt      |  2,100,000 |                |           |                     |
-| texts/bnc-small.txt     |  5,700,000 |                |           |                     |
-| texts/bnc-medium.txt    | 20,000,000 |                |           |                     |
-| texts/bnc-large.txt     | 57,000,000 |                |           |                     |
+| texts/bnc-miniscule.txt |      5,000 |       100ms    |  12,3ms   |                     |
+| texts/bnc-tiny.txt      |    100,000 |      25,3s     |  66,7ms   |                     |
+| texts/bnc-mini.txt      |  2,100,000 |                |   1,08s   |                     |
+| texts/bnc-small.txt     |  5,700,000 |                |   22,91s  |                     |
+| texts/bnc-medium.txt    | 20,000,000 |                |   13,9s   |                     |
+| texts/bnc-large.txt     | 57,000,000 |                |   37,3s   |                     |
 
 Pivot strategy used:
-* quicksort: TODO
+* quicksort: ADAPTIVE
 * multi-key quicksort: TODO
 
 Does this match your knowledge about the asymptotic complexities of insertion sort and quicksort?
@@ -91,6 +97,8 @@ The first number `RunSearchPrompt` prints on each line is the position of each s
 As you can see, these numbers are not ordered: they seem to be random.
 Why do you think the results are not shown in increasing order of position?
 
+That is the line in the text where the searchkey is found.
+
 TODO
 
 **Question**
@@ -103,6 +111,7 @@ Appendix: general information
 
 **Questions**
 Which spoilers did you use?
+All of them
 
 TODO
 
