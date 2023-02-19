@@ -21,7 +21,7 @@ public class RunSearchPrompt {
         }
 
         // Load suffix array from disk.
-        SuffixArray suffixArray = new SuffixArray("texts/bnc-small.txt");
+        SuffixArray suffixArray = new SuffixArray("texts/bnc-large.txt");
         if (!suffixArray.existsOnDisk()) {
             System.out.println("No suffix array found on disk. Build one first using BuildSuffixArray.");
             System.exit(-1);
