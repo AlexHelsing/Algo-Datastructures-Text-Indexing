@@ -87,7 +87,10 @@ TODO
 How long do you predict multi-key quicksort to take for texts/bnc-full.txt?
 It contains ca. 570 million characters.
 
-570 million * log(2 based) * 570 million * (how long it takes for the computer to do one comparison
+We calculated this using one of our computers where the average comparison time was 70,4ns.
+nlog(n) * avg comparison time.
+n = 570000000 avg comparison time = 7.04*10^-8 seconds
+570000000*log(570000000) * 7.04*10^-8 = 809 seconds, or 13,4 minutes.
 
 TODO
 
@@ -113,6 +116,8 @@ TODO
 
 **Question**
 What could be done to fix this?
+
+Sort the array with the charsequence comparator to get the numbers in the right order
 
 TODO
 
@@ -142,13 +147,15 @@ TODO
 
 **Question**
 Did you encounter any serious problems?
-
-Yes, my brain is too small for this. We got stuck on some parts for long periods of time.
+Stefan : Yes I got stuck very often.
+Alexander : Yes, my brain is too small for this. We got stuck on some parts for long periods of time.
+Henrik : Yes
 
 TODO
 
 **Question**
-What is your feedback on this assignment?
-It was a tough lab
+Stefan : Very hard lab
+Alexander : Very tough lab
+Henrik : Very difficult lab
 
 TODO
