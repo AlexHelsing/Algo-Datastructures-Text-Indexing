@@ -12,7 +12,7 @@ public class BuildSuffixArray {
 
         SuffixArray suffixArray = new SuffixArray(textFilename);
         suffixArray.build();
-        //suffixArray.writeToDisk();
+        suffixArray.writeToDisk();
     }
 
 }

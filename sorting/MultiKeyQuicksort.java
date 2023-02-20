@@ -47,7 +47,6 @@ public class MultiKeyQuicksort<E> extends SortingAlgorithm<E, LexicographicCompa
 
         int pivotIndex = selector.pivotIndex(list, from, to, comparator);
         E pivot = list.get(pivotIndex);
-
         swap(list, from, pivotIndex);
 
         pivotIndex = from;
