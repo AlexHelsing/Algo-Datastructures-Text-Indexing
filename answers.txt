@@ -2,9 +2,9 @@ Text indexing
 =============
 
 Time spent per group member:
-* TODO: TODO
-* TODO: TODO
-* TODO: TODO
+* Stefan 20h+
+* Henrik 12h
+* Alexander 20h+
 
 Part 1: Insertion sort and quicksort
 ------------------------------------

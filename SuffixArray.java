@@ -135,7 +135,7 @@ public class SuffixArray {
                 match++;
             }
             if (match > maxNumMatches) {
-                System.out.println("[%d matches omited]%n");
+                System.out.println("[" + match + " matches omitted]");
             }
         });
     }
@@ -146,6 +146,6 @@ public class SuffixArray {
          suffixArray.build();
          suffixArray.writeToDisk();
          suffixArray.readFromDisk();
-         suffixArray.searchForKey("face", 10, 5, true);
+         suffixArray.searchForKey("a", 10, 5, true);
     }
 }
