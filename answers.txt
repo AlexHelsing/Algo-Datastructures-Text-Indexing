@@ -37,7 +37,7 @@ Use this to decide which of the two growth rate scenarios fits the runtime bette
 
 Are there disagreements between this experimental data and your theoretical knowledge?
 
-*I could not pass the -Xss10m to the VM as an argument, it did not help the crash :S
+*I could not pass the -Xss10m to the VM as an argument, it did not help the crash unfortunately..
 
 We knew insertion sorts works really well for already sorted inputs, or inputs where a large part of the array is already
 sorted. Quicksort with first index pivot and sorted input is pretty crap since it chooses the smallest element of the whole
@@ -74,19 +74,20 @@ TODO
 Based on the above data, do quicksort and multi-key quicksort have the same asymptotic complexity?
 Justify briefly.
 
-It has the same complexity but the multikey quicksort works a lot better when sorting arrays with duplicate strings.
+It has the same complexity, but the multikey quicksort works a lot better when sorting arrays with duplicate strings.
 
 TODO
 
 By what factor is multi-key quicksort faster when compared to quicksort?
-When it comes to sorting arrays with a lot of duplicate strings?
+
+When it comes to sorting arrays with a lot of duplicate strings it excels.
 
 TODO
 
 How long do you predict multi-key quicksort to take for texts/bnc-full.txt?
 It contains ca. 570 million characters.
 
-Depends on computer? What
+570 million * log(2 based) * 570 million * (how long it takes for the computer to do one comparison
 
 TODO
 
@@ -105,6 +106,8 @@ TODO
 The first number `RunSearchPrompt` prints on each line is the position of each search result.
 As you can see, these numbers are not ordered: they seem to be random.
 Why do you think the results are not shown in increasing order of position?
+
+The number is the position of the suffix start in the text
 
 TODO
 
@@ -146,6 +149,6 @@ TODO
 
 **Question**
 What is your feedback on this assignment?
-Very tough lab
+It was a tough lab
 
 TODO
